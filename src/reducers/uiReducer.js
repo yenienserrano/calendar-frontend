@@ -1,10 +1,11 @@
 import { types } from "../types/types"
 
 const initialState = {
-    isOpen: false
+    isOpen: false,
+    msgError: null
 }
 
-export default (state = initialState, action) => {
+export const uiReducer = (state = initialState, action) => {
     switch ( action.type ) {
 
     case types.uiOpenModal:
@@ -17,6 +18,16 @@ export default (state = initialState, action) => {
         return {
             ...state,
             isOpen: false
+        }
+    case types.uiSetError:
+        return {
+            ...state,
+            msgError: action.payload
+        }
+    case types.uiRemoveError:
+        return {
+            ...state,
+            msgError: null
         }
 
     default:

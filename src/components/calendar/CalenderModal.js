@@ -6,7 +6,7 @@ import Modal from 'react-modal';
 import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
 import Swal from 'sweetalert2';
-import { eventAddNew, eventClearActive, eventUpdated } from '../../actions/events';
+import { eventClearActive, eventStartAddNew, startEventUpdated } from '../../actions/events';
 
  
 const customStyles = {
@@ -99,17 +99,10 @@ export const CalenderModal = () => {
         setValidTitle( true )
 
         if( activeEvent ) {
-            dispatch( eventUpdated( formValue ) )
+            dispatch( startEventUpdated( formValue ) )
         } else {
 
-            dispatch( eventAddNew({
-                ...formValue,
-                id: new Date().getTime(),
-                user: {
-                    _id: '1234',
-                    name: 'ian'
-                }
-            }) )
+            dispatch( eventStartAddNew( formValue ) )
 
         }    
 
